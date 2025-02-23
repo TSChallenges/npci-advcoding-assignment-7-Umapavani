@@ -2,7 +2,6 @@ package com.mystore.app.service;
 
 import com.mystore.app.entity.Product;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,16 +72,30 @@ public class ProductService {
         return null;
     }
 
-    // TODO: Method to search products by name
+
+    //  Method to search products by name
+    public List<Product> getProductsByName(String name) {
+       return products.stream().filter(obj->obj.getName().equals(name)).toList();
+    }
 
 
-    // TODO: Method to filter products by category
+    //  Method to filter products by category
+    public List<Product> getProductsByCategory(String category) {
+        return products.stream().filter(obj->obj.getCategory().equals(category)).toList();
+    }
 
 
-    // TODO: Method to filter products by price range
 
+    //  Method to filter products by price range
 
-    // TODO: Method to filter products by stock quantity range
+    public List<Product> getProductsByPriceRange(Double minPrice, Double maxPrice) {
+        return products.stream().filter(obj->obj.getPrice()<=maxPrice && obj.getPrice()>=minPrice).toList();
 
+    }
+
+    //  Method to filter products by stock quantity range
+    public List<Product> getProductsByStockQuantity(Double minStock, Double maxStock) {
+        return products.stream().filter(obj->obj.getStockQuantity()<=maxStock && obj.getStockQuantity()>=minStock).toList();
+    }
     
 }
